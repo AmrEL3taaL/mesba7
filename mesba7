@@ -35,7 +35,7 @@ url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:genera
 
 if len(sys.argv) > 1:
 
-    text="Help with any question I ask about Linux bash commands only in very summarized answer with a short example usage and don't add any markdown styling make sure all the output you give is pair text. other wise if my question is off topic please only answer politely by refusing to answer this question. So my questions is : "+" ".join(sys.argv[1:])
+    text="Help with any question I ask about Linux bash commands only in very summarized answer with a short example usage and do not add any markdown styling make sure all the output you give is pair text. other wise if my question is off topic please only answer politely by refusing to answer this question. So my questions is : "+" ".join(sys.argv[1:])
 
 else:
 
