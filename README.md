@@ -162,5 +162,5 @@ source ~/.bashrc
 <br />
 Now you can use genie just as like as you would use the installed geny from the mesba7
 
-<p align="center">that's it 👀</p>
+<h1 align="center">that's it 👀</h1>
 
