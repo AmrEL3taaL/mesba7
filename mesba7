@@ -1,0 +1,135 @@
+
+#!/bin/bash
+
+
+
+# Check if Python is installed
+
+if ! command -v python3 &> /dev/null
+
+then
+
+    echo "Python is not installed. Installing Python..."
+
+    sudo apt-get update
+
+    sudo apt-get install python3.8
+
+fi
+
+
+
+# Python script as a string
+
+python_script='import requests
+
+import json
+
+import sys
+
+
+
+KEY="CHANGE_TO_YOUR_PRIVATE_KEY"
+
+url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + KEY
+
+if len(sys.argv) > 1:
+
+    text="Help with any question I ask about Linux bash commands only in very summarized answer with a short example usage and don't add any markdown styling make sure all the output you give is pair text. other wise if my question is off topic please only answer politely by refusing to answer this question. So my questions is : "+" ".join(sys.argv[1:])
+
+else:
+
+    print("What do you want from me master ?")
+
+    sys.exit()
+
+
+
+data = {
+
+  "contents": [
+
+    {
+
+      "parts": [
+
+        {
+
+          "text": text
+
+        }
+
+      ]
+
+    }
+
+  ]
+
+}
+
+
+
+response = requests.post(url, headers={"Content-Type": "application/json"}, data=json.dumps(data))
+
+
+
+if response.status_code == 200:
+
+    print(response.json().get("candidates")[0].get("content").get("parts")[0].get("text"))
+
+else:
+
+    print("Error:", response.status_code)'
+
+
+
+# Check if the Python script contains "CHANGE_TO_YOUR_PRIVATE_KEY"
+
+if [[ $python_script == *"CHANGE_TO_YOUR_PRIVATE_KEY"* ]]; then
+
+    echo "Please go to https://aistudio.google.com/app/apikey and generate a new private API key from Gemini."
+
+    read -p "Enter your private API key: " api_key
+
+    # Replace "CHANGE_TO_YOUR_PRIVATE_KEY" with the user's API key
+
+    python_script=${python_script//"CHANGE_TO_YOUR_PRIVATE_KEY"/$api_key}
+
+fi
+
+
+
+# Create a bash script
+
+cat << EOF > geny
+
+#!/bin/bash
+
+
+
+python_script="\$(cat << 'EOPYTHON'
+
+$python_script
+
+EOPYTHON
+
+)"
+
+# Run the Python script with all parameters passed to the bash script
+
+python3 -c "\$python_script" "\$@"
+
+EOF
+
+
+
+# Make the bash script executable
+
+chmod +x geny
+
+
+
+# Move the bash script to /usr/local/bin so it can be executed from anywhere
+
+sudo mv geny /usr/local/bin/
+
