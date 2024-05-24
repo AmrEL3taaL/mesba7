@@ -88,6 +88,8 @@ Your question is off-topic for this assistant. I can only help with questions ab
 
 # <p align="center">Genie 🧞 and the project. </p>
 
+Project inspiration by our beloved engineer [Ramy Gomaa](https://github.com/RamyGomaa)
+
 ## Manual setup
 
 step by step how to create and the code explanations
