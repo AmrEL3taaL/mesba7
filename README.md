@@ -3,7 +3,8 @@
 
 
 # <p align="center">Mesba7 💡</p>
-
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AmrEL3taaL/mesba7?style=for-the-badge&logo=GNU%20Bash&logoColor=000000&labelColor=fdd835"> <img alt="Forks" src="https://img.shields.io/github/forks/AmrEL3taaL/mesba7?style=for-the-badge&labelColor=343b41"/>
+<br />
 An AI chatbot with Gemini API to assist in your daily usege of linux insated of RTFM 😉
 
 # Installation
